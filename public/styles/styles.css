@@ -10,6 +10,15 @@ body {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+a {
+  color: inherit;
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 button,
 input,
 select {
@@ -38,6 +47,9 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
   }
 }
 

@@ -4,7 +4,7 @@
   "main": "public/js",
   "scripts": {
     "build": "tsc",
-    "build-watch": "tsc --watch",
+    "build:dev": "tsc --watch",
     "start": "serve public"
   },
   "keywords": [],
