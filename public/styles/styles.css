@@ -36,21 +36,21 @@ li {
   list-style: none;
 }
 
-.container {
-  margin: 0 auto;
-  max-width: 1000px;
-  padding: 0 20px;
-}
-
 .main-header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
   > * {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
   }
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 0 20px;
 }
 
 .main-navigation {
