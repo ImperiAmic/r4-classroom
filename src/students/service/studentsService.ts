@@ -23,6 +23,10 @@ export const addStudent = (
   );
   const isNewStudentFound = isEmailFound || isPhoneNumberFound;
 
+  if (isNewStudentFound) {
+    throw showErrorModal("Ya existe un estudiante con este email y/o teléfono");
+  }
+
   const newStudent: Student = {
     id: generateId(students),
     name: newStudentName,
@@ -31,10 +35,6 @@ export const addStudent = (
     email: newStudentEmail,
     phoneNumber: newStudentPhoneNumber,
   };
-
-  if (isNewStudentFound) {
-    throw showErrorModal("Ya existe un estudiante con este email y/o teléfono");
-  }
 
   return students.splice(getStudentsTotal(students), 0, newStudent);
 };
