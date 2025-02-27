@@ -2,7 +2,7 @@ import { students } from "../../index.js";
 import { studentsStorage } from "../../storage/Storage.js";
 import {
   addStudent,
-  //   deleteStudent,
+  deleteStudent,
   getStudentsTotal,
 } from "../service/studentsService.js";
 import { Student } from "../../types.js";
@@ -41,7 +41,7 @@ const createStudentRow = (student: Student): void => {
   `;
 
   row.querySelector("button")?.addEventListener("click", () => {
-    // deleteStudent(students, student.id);
+    deleteStudent(students, student.id);
     studentsStorage.save(students);
 
     renderStudentsTable();
