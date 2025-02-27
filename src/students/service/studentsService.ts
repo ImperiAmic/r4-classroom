@@ -7,8 +7,6 @@ export const getStudentsTotal = (students: Student[]): number => {
   return students.length;
 };
 
-const studentsLength = students.length;
-
 export const addStudent = (
   students: Student[],
   newStudentName: string,
@@ -38,7 +36,7 @@ export const addStudent = (
     throw showErrorModal("Ya existe un estudiante con este email y/o teléfono");
   }
 
-  return students.splice(studentsLength, 0, newStudent);
+  return students.splice(getStudentsTotal(students), 0, newStudent);
 };
 
 export const deleteStudent = (students: Student[], id: number): void => {
