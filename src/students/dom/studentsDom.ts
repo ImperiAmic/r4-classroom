@@ -1,7 +1,7 @@
 import { students } from "../../index.js";
 import { studentsStorage } from "../../storage/Storage.js";
 import {
-  //   addStudent,
+  addStudent,
   //   deleteStudent,
   getStudentsTotal,
 } from "../service/studentsService.js";
@@ -63,14 +63,14 @@ studentsForm.addEventListener("submit", (event) => {
     "#phone"
   ) as HTMLInputElement;
 
-  /* addStudent(
+  addStudent(
     students,
     studentName.value,
     studentLastName.value,
     +studentAge.value,
     studentEmail.value,
     studentPhoneNumber.value
-  ); */
+  );
   studentsStorage.save(students);
 
   renderStudentsTable();

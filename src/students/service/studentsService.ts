@@ -1,4 +1,5 @@
 import { showErrorModal } from "../../dom/index.js";
+import { students } from "../../index.js";
 import { Student } from "../../types.js";
 import { generateId } from "../../utils.js";
 
@@ -6,10 +7,39 @@ export const getStudentsTotal = (students: Student[]): number => {
   return students.length;
 };
 
-// Crea una función para añadir un estudiante a la lista de estudiantes
-// La función debe recibir un array de estudiantes y los datos del estudiante a añadir
-// Si el estudiante ya existe en la lista, muestra un error con showErrorModal
-// export const addStudent =
+const studentsLength = students.length;
+
+export const addStudent = (
+  students: Student[],
+  newStudentName: string,
+  newStudentLastName: string,
+  newStudentAge: number,
+  newStudentEmail: string,
+  newStudentPhoneNumber: string
+): Student[] => {
+  const isEmailFound = students.some(
+    (student) => student.email === newStudentEmail
+  );
+  const isPhoneNumberFound = students.some(
+    (student) => student.phoneNumber === newStudentPhoneNumber
+  );
+  const isNewStudentFound = isEmailFound || isPhoneNumberFound;
+
+  const newStudent: Student = {
+    id: generateId(students),
+    name: newStudentName,
+    lastName: newStudentLastName,
+    age: newStudentAge,
+    email: newStudentEmail,
+    phoneNumber: newStudentPhoneNumber,
+  };
+
+  if (isNewStudentFound) {
+    throw showErrorModal("Ya existe un estudiante con este email y/o teléfono");
+  }
+
+  return students.splice(studentsLength, 0, newStudent);
+};
 
 // Crea una función para eliminar un estudiante de la lista de estudiantes
 // La función debe recibir un array de estudiantes y el id del estudiante a eliminar
