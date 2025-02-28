@@ -20,4 +20,34 @@ export const getGradesTotal = (grades: Grade[]): number => {
 // Crea una función para crear una nueva nota
 // La función debe recibir un array de notas, el id del estudiante, el id del curso y el valor de la nota
 // Si la nota ya existe, muestra un error con showErrorModal
-// export const addGrade =
+
+export const addGrade = (
+  grades: Grade[],
+  addedStudentId: number,
+  addedCourseId: number,
+  addedGrade: number
+): Grade[] | undefined => {
+  const isAddedStudentIdFound = grades.some(
+    (grade) => grade.studentId === addedStudentId
+  );
+  const isAddedCourseIdFound = grades.some(
+    (grade) => grade.courseId === addedCourseId
+  );
+  const isAddedGradeFound = grades.some((grade) => grade.value === addedGrade);
+  const isNewGradeFound =
+    isAddedStudentIdFound && isAddedCourseIdFound && isAddedGradeFound;
+
+  if (isNewGradeFound) {
+    showErrorModal("Nota ya añadida para este curso y estudiante");
+    return;
+  }
+
+  grades.push({
+    id: generateId(courses),
+    studentId: addedStudentId,
+    courseId: addedCourseId,
+    value: addedGrade,
+  });
+
+  return grades;
+};

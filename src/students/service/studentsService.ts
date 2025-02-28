@@ -24,21 +24,21 @@ export const addStudent = (
   );
   const isNewStudentFound = isEmailFound || isPhoneNumberFound;
 
-  const newStudent: Student = {
+  if (isNewStudentFound) {
+    showErrorModal("Ya existe un estudiante con este email y/o teléfono");
+    return;
+  }
+
+  students.push({
     id: generateId(students),
     name: newStudentName,
     lastName: newStudentLastName,
     age: newStudentAge,
     email: newStudentEmail,
     phoneNumber: newStudentPhoneNumber,
-  };
+  });
 
-  if (isNewStudentFound) {
-    showErrorModal("Ya existe un estudiante con este email y/o teléfono");
-    return;
-  }
-
-  return students.splice(getStudentsTotal(students), 0, newStudent);
+  return students;
 };
 
 export const deleteStudent = (students: Student[], id: number): void => {
@@ -56,7 +56,7 @@ export const deleteStudent = (students: Student[], id: number): void => {
 };
 
 export const getStudentsOptions = (students: Student[]): StudentOption[] => {
-  let studentsOptions: StudentOption[] = [];
+  const studentsOptions: StudentOption[] = [];
 
   students.forEach((student) => {
     studentsOptions.push({
