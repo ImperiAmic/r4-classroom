@@ -11,7 +11,14 @@ export const addCourse = (
   courses: Course[],
   newCourseName: string
 ): Course[] => {
-  const isCourseFound = courses.some((course) => course.name === newCourseName);
+  const toLowerCaseNewCourseName = newCourseName.toLowerCase();
+  const isCourseFound = courses.some(
+    (course) => course.name.toLowerCase() === toLowerCaseNewCourseName
+  );
+
+  if (/^\s/.test(newCourseName)) {
+    throw showErrorModal("Tu curso no puede empezar con un espacio en blanco");
+  }
 
   if (isCourseFound) {
     throw showErrorModal("Ya existe un curso con este nombre");
