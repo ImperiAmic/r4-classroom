@@ -24,7 +24,8 @@ export const addStudent = (
   const isNewStudentFound = isEmailFound || isPhoneNumberFound;
 
   if (isNewStudentFound) {
-    throw showErrorModal("Ya existe un estudiante con este email y/o teléfono");
+    showErrorModal("Ya existe un estudiante con este email y/o teléfono");
+    process.exit();
   }
 
   const newStudent: Student = {

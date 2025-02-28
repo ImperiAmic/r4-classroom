@@ -17,11 +17,13 @@ export const addCourse = (
   );
 
   if (/^\s/.test(newCourseName)) {
-    throw showErrorModal("Tu curso no puede empezar con un espacio en blanco");
+    showErrorModal("Tu curso no puede empezar con un espacio en blanco");
+    process.exit();
   }
 
   if (isCourseFound) {
-    throw showErrorModal("Ya existe un curso con este nombre");
+    showErrorModal("Ya existe un curso con este nombre");
+    process.exit();
   }
 
   const newCourse: Course = {
