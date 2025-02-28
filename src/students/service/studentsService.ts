@@ -1,6 +1,6 @@
 import { showErrorModal } from "../../dom/index.js";
 import { students } from "../../index.js";
-import { Student } from "../../types.js";
+import { Student, StudentOption } from "../../types.js";
 import { generateId } from "../../utils.js";
 
 export const getStudentsTotal = (students: Student[]): number => {
@@ -55,13 +55,19 @@ export const deleteStudent = (students: Student[], id: number): void => {
   students.splice(studentToDeletePosition, 1);
 };
 
-// Crea una función para obtener las opciones de estudiantes para rellenar un select
-// La función debe recibir un array de estudiantes
-// La función debe devolver un array de objetos con tres propiedades: id, name y lastName
-// La propiedad id debe ser el id del estudiante
-// La propiedad name debe ser el nombre del estudiante
-// La propiedad lastName debe ser el apellido del estudiante
-// export const getStudentsOptions =
+export const getStudentsOptions = (students: Student[]): StudentOption[] => {
+  let studentsOptions: StudentOption[] = [];
+
+  students.forEach((student) => {
+    studentsOptions.push({
+      id: student.id,
+      name: student.name,
+      lastName: student.lastName,
+    });
+  });
+
+  return studentsOptions;
+};
 
 // Crea una función para obtener el nombre completo de un estudiante por su id
 // La función debe recibir un array de estudiantes y el id del estudiante
