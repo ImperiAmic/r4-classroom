@@ -15,8 +15,9 @@ export const addStudent = (
   newStudentEmail: string,
   newStudentPhoneNumber: string
 ): Student[] => {
+  const toLowerCaseNewStudentEmail = newStudentEmail.toLowerCase();
   const isEmailFound = students.some(
-    (student) => student.email === newStudentEmail
+    (student) => student.email === toLowerCaseNewStudentEmail
   );
   const isPhoneNumberFound = students.some(
     (student) => student.phoneNumber === newStudentPhoneNumber
