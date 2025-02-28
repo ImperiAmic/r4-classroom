@@ -10,20 +10,20 @@ export const getCoursesTotal = (courses: Course[]): number => {
 export const addCourse = (
   courses: Course[],
   newCourseName: string
-): Course[] => {
+): Course[] | undefined => {
   const toLowerCaseNewCourseName = newCourseName.toLowerCase();
   const isCourseFound = courses.some(
     (course) => course.name.toLowerCase() === toLowerCaseNewCourseName
   );
 
   if (/^\s/.test(newCourseName)) {
-    showErrorModal("Tu curso no puede empezar con un espacio en blanco");
-    process.exit();
+    showErrorModal("El curso no puede empezar con un espacio en blanco");
+    return;
   }
 
   if (isCourseFound) {
     showErrorModal("Ya existe un curso con este nombre");
-    process.exit();
+    return;
   }
 
   const newCourse: Course = {

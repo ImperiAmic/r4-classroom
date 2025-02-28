@@ -14,7 +14,7 @@ export const addStudent = (
   newStudentAge: number,
   newStudentEmail: string,
   newStudentPhoneNumber: string
-): Student[] => {
+): Student[] | undefined => {
   const toLowerCaseNewStudentEmail = newStudentEmail.toLowerCase();
   const isEmailFound = students.some(
     (student) => student.email === toLowerCaseNewStudentEmail
@@ -24,11 +24,6 @@ export const addStudent = (
   );
   const isNewStudentFound = isEmailFound || isPhoneNumberFound;
 
-  if (isNewStudentFound) {
-    showErrorModal("Ya existe un estudiante con este email y/o teléfono");
-    process.exit();
-  }
-
   const newStudent: Student = {
     id: generateId(students),
     name: newStudentName,
@@ -37,6 +32,11 @@ export const addStudent = (
     email: newStudentEmail,
     phoneNumber: newStudentPhoneNumber,
   };
+
+  if (isNewStudentFound) {
+    showErrorModal("Ya existe un estudiante con este email y/o teléfono");
+    return;
+  }
 
   return students.splice(getStudentsTotal(students), 0, newStudent);
 };
