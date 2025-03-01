@@ -36,3 +36,10 @@ export type StudentOption = {
   name: string;
   lastName: string;
 };
+
+export type GradeFullData = {
+  grade: Grade;
+  studentName: string | undefined;
+  studentLastName: string | undefined;
+  courseName: string | undefined;
+};
