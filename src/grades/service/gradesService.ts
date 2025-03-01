@@ -27,9 +27,15 @@ export const getGradeFullData = (grade: Grade): GradeFullData => {
   return gradeFullData;
 };
 
-// Crea una función para eliminar una nota de la lista de notas
-// La función debe recibir un array de notas y el id de la nota a eliminar
-// export const deleteGrade =
+export const deleteGrade = (grades: Grade[], id: number): void => {
+  const toDeleteGrade = grades.find((grade) => id === grade.id);
+  const toDeleteGradeId = toDeleteGrade?.id;
+  const toDeleteGradePosition = grades.findIndex(
+    (grade) => grade.id === toDeleteGradeId
+  );
+
+  grades.splice(toDeleteGradePosition, 1);
+};
 
 export const addGrade = (
   grades: Grade[],
@@ -53,7 +59,7 @@ export const addGrade = (
   }
 
   grades.push({
-    id: generateId(courses),
+    id: generateId(grades),
     studentId: addedStudentId,
     courseId: addedCourseId,
     value: addedGrade,

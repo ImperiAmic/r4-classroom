@@ -42,9 +42,7 @@ export const addStudent = (
 };
 
 export const deleteStudent = (students: Student[], id: number): void => {
-  const toDeleteStudent = students.find(
-    (student: Student) => id === student.id
-  );
+  const toDeleteStudent = students.find((student) => id === student.id);
 
   const toDeleteStudentId = toDeleteStudent?.id;
 
