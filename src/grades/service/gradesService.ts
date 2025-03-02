@@ -41,19 +41,14 @@ export const addGrade = (
   grades: Grade[],
   addedStudentId: number,
   addedCourseId: number,
-  addedGrade: number
+  addedValue: number
 ): Grade[] | undefined => {
-  const isAddedStudentIdFound = grades.some(
-    (grade) => grade.studentId === addedStudentId
+  const isAddedGradeFound = grades.some(
+    (grade) =>
+      grade.studentId === addedStudentId && grade.courseId === addedCourseId
   );
-  const isAddedCourseIdFound = grades.some(
-    (grade) => grade.courseId === addedCourseId
-  );
-  const isAddedGradeFound = grades.some((grade) => grade.value === addedGrade);
-  const isNewGradeFound =
-    isAddedStudentIdFound && isAddedCourseIdFound && isAddedGradeFound;
 
-  if (isNewGradeFound) {
+  if (isAddedGradeFound) {
     showErrorModal("Nota ya añadida para este curso y estudiante");
     return;
   }
@@ -62,7 +57,7 @@ export const addGrade = (
     id: generateId(grades),
     studentId: addedStudentId,
     courseId: addedCourseId,
-    value: addedGrade,
+    value: addedValue,
   });
 
   return grades;

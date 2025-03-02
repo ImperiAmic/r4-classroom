@@ -54,19 +54,19 @@ export const deleteStudent = (students: Student[], id: number): void => {
 };
 
 export const getStudentsOptions = (students: Student[]): StudentOption[] => {
-  const studentsOptions: StudentOption[] = [];
-
-  students.forEach((student) => {
-    studentsOptions.push({
-      id: student.id,
-      name: student.name,
-      lastName: student.lastName,
-    });
-  });
+  const studentsOptions: StudentOption[] = students.map((student) => ({
+    id: student.id,
+    name: student.name,
+    lastName: student.lastName,
+  }));
 
   return studentsOptions;
 };
 
-// Crea una función para obtener el nombre completo de un estudiante por su id
-// La función debe recibir un array de estudiantes y el id del estudiante
-// export const getStudentNameById =
+export const getStudentNameById = (students: Student[], id: number): string => {
+  const toFindStudent = students.find((student) => student.id === id);
+  const toFindStudentName = toFindStudent?.name;
+  const toFindStudentLastName = toFindStudent?.lastName;
+  const toFindStudentFullName = `${toFindStudentName} ${toFindStudentLastName}`;
+  return toFindStudentFullName;
+};

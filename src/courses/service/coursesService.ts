@@ -47,14 +47,17 @@ export const deleteCourse = (courses: Course[], id: number): void => {
 };
 
 export const getCoursesOptions = (courses: Course[]): Course[] => {
-  let coursesOptions: Course[] = [];
+  const coursesOptions: Course[] = courses.map((course) => ({
+    id: course.id,
+    name: course.name,
+  }));
 
-  courses.forEach((course) => {
-    coursesOptions.push({
-      id: course.id,
-      name: course.name,
-    });
-  });
+  // courses.forEach((course) => {
+  //   coursesOptions.push({
+  //     id: course.id,
+  //     name: course.name,
+  //   });
+  // });
 
   return coursesOptions;
 };
